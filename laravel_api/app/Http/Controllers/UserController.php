@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Module;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 class UserController extends Controller
@@ -85,5 +87,20 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function activateModule(Request $request, $moduleName)
+    {
+        $user = Auth::user();
+        $module = Module::where('name', $moduleName)->firstOrFail();
+        $user->modules()->updateExistingPivot($module->id, ['active' => true]);
+        return response()->json(['message' => "Module '{$moduleName}' activé."]);
+    }
+
+    public function deactivateModule(Request $request, $moduleName)
+    {
+        $user = Auth::user();
+        $module = Module::where('name', $moduleName)->firstOrFail();
+        $user->modules()->updateExistingPivot($module->id, ['active' => false]);
+        return response()->json(['message' => "Module '{$moduleName}' désactivé."]);
     }
 }
