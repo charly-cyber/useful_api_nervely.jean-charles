@@ -21,7 +21,8 @@
                 <label for="password" class="block text-sm font-medium">password</label>
                 <input type="password" id="password" class="w-full px-3 py-2 border rounded-md"
                     placeholder="Votre mot de passe" v-model="formData.password" required>
-                <p v-if="authStore.authErrors.password" class="error-message">{{ authStore.authErrors.password[0] }}</p>
+                <p v-if="authStore.authErrors.password" class="error-message">{{ authStore.authErrors.password[0] }}
+                </p>
             </div>
             <div class="mb-4">
                 <label for="confirm_password" class="block text-sm font-medium">confirm password</label>
@@ -33,8 +34,15 @@
 
             <button type="submit" :disabled="authStore.isLoading"
                 class="w-full bg-blue-500 text-white py-2 px-4 cursor-pointer rounded-md hover:bg-blue-600"> {{
-                    authStore.isLoading ? 'Enregistrement...' : 'S\'inscrire' }}</button>
+                authStore.isLoading ? 'Enregistrement...' : 'S\'inscrire' }}</button>
         </form>
+        <p class="text-sm text-gray-600">
+            I already have an account ?
+            <router-link to="/login" class="text-indigo-600 hover:text-indigo-500 font-medium">
+                Login
+            </router-link>
+        </p>
+
         <p v-if="successMessage" class="success">{{ successMessage }}</p>
         <p v-if="authStore.authErrors.generic" class="error-message">{{ authStore.authErrors.generic }}</p>
     </div>

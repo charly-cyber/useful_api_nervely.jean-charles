@@ -21,8 +21,15 @@
                 class="w-full bg-blue-500 text-white cursor-pointer py-2 px-4 rounded-md hover:bg-blue-600"> {{
                 authStore.isLoading ? 'Connexion...' : 'Se connecter' }}</button>
         </form>
+        <p class="text-sm text-gray-600">
+            I don't have an account ?
+            <router-link to="/register" class="text-indigo-600 hover:text-indigo-500 font-medium">
+                Register
+            </router-link>
+        </p>
         <p v-if="authStore.authError" class="error">{{ authStore.authError }}</p>
         <p v-if="authStore.isAuthenticated" class="success">Connexion réussie !</p>
+
     </div>
 
 </template>
