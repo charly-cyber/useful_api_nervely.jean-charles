@@ -51,8 +51,7 @@ const handleLogin = async () => {
   
     authStore.authError = null;
     console.log('Connexion successfully !');
-   
-    //router.push('/dashboard');
+    //this.router.push('/dashboard');
   } catch (error) {
     console.error('Erreur de connexion:', error);
   }
